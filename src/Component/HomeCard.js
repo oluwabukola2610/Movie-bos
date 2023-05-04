@@ -4,7 +4,7 @@ import Card from "./Card";
 import { Link } from "react-router-dom";
 
 const HomeCard = () => {
-  const { movies } = useContext(movieContext);
+  const { movies,favoriteHandler } = useContext(movieContext);
   return (
     <div className="mx-auto px-10 max-w-[1640px] py-12">
       {movies?.length > 0 ? (
@@ -19,10 +19,11 @@ const HomeCard = () => {
               >
                 <Card
                   key={movie.imdbID}
-                  poster={movie.Poster}
+                  image={movie.Poster}
                   title={movie.Title}
                   year={movie.Year}
-                  // addFavorite={(e) => (movie, e)}
+                  addFavorite={(e) => favoriteHandler(movie, e)}
+                  isFavorite={movie.isFavorite}
                 />
               </Link>
             );
